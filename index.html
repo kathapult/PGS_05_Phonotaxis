@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phonotaxis</title>
+    <link rel="stylesheet" href="style.css?v=cleanup-1" />
+  </head>
+  <body>
+    <aside id="sidebar" aria-label="Phonotaxis controls">
+      <header class="brand">
+        <h1 aria-label="Phonotaxis">
+          <svg viewBox="0 0 300 54" aria-hidden="true" focusable="false">
+            <text x="0" y="43" textLength="300" lengthAdjust="spacingAndGlyphs">Phonotaxis</text>
+          </svg>
+        </h1>
+      </header>
+      <div id="ui">
+        <section class="panel" aria-labelledby="track-title">
+          <h3 id="track-title">_select audio track</h3>
+          <div class="button-grid">
+            <button id="btn-analyze-track" type="button">Analyze track</button>
+            <button id="btn-play-calibrated" type="button" disabled>Play track</button>
+          </div>
+          <input id="input-analyze-track" type="file" accept="audio/*" hidden />
+        </section>
+        <section id="angle-controls" class="panel" aria-labelledby="source-heading">
+            <h3 id="source-heading">_select angle source</h3>
+          <div class="angle-input-display">
+            <label for="angle-input-meter">Source value</label><output id="angle-input-value">0.000</output>
+            <meter id="angle-input-meter" min="0" max="1" value="0"></meter>
+          </div>
+          <div id="angle-source-buttons"></div>
+        </section>
+        <section class="panel form-panel" aria-labelledby="form-heading">
+          <h2 id="form-heading">Angle Derivation</h2>
+          <label class="slider-control" id="angle-settings" for="slider-angle"><span>Angle</span><output id="angle-settings-value" for="slider-angle"></output><input id="slider-angle" type="range" min="135" max="137.508" step="0.001" value="135" aria-label="Base angle from 135 degrees to the golden angle (137.508 degrees)" /></label>
+          <label class="slider-control" for="slider-smoothing"><span>Smoothing</span><output id="smoothing-settings-value" for="slider-smoothing"></output><input id="slider-smoothing" type="range" min="0" max="2" step="0.01" value="1" aria-label="Audio smoothing in seconds" /></label>
+          <label class="slider-control" for="slider-tempo"><span>Tempo</span><output id="tempo-settings-value" for="slider-tempo"></output><input id="slider-tempo" type="range" min="1" max="3" step="0.1" value="2" aria-label="Visual tempo multiplier" /></label>
+        </section>
+      </div>
+    </aside>
+    <main id="stage" aria-label="Generative audio visualization"><canvas id="canvas"></canvas>
+
+    </main>
+    <pre id="error" role="alert"></pre>
+    <script src="lib/meyda.min.js"></script>
+    <script>
+      window.Meyda || document.write('<script src="https://cdn.jsdelivr.net/npm/meyda@5.6.3/dist/web/meyda.min.js"><\/script>');
+    </script>
+    <script src="src/webgl.js?v=shader-split-1"></script>
+    <script src="src/sketch.js?v=shader-split-1"></script>
+  </body>
+</html>
